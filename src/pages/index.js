@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { graphql, withPrefix } from 'gatsby';
+import { graphql } from 'gatsby';
+
+import "../css/type.css";
+
 import {
   Box,
   Button,
@@ -72,10 +75,10 @@ const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
   const [colorIndex, setColorIndex] = useState(0);
   const color = colors[colorIndex];
-  const [fontId, setFontId]  = useState('');
+  const [fontId, setFontId]  = useState('9cf7bba6-2e61-59f5-81b1-7949339ebc45');
   const font = data[style]?.nodes.find(node => node.id === fontId);
   
-  console.log(font, style, color);
+  console.log(font);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -91,7 +94,7 @@ const IndexPage = ({data}) => {
           
         </Flex>
         <Flex className={`card`} w='583px' h='448px' bgImage={`url(${style}.jpg)`} alignItems='flex-end' justifyContent='flex-end' p='16'>
-          <Text className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/8}px`} color={color[1]}>{style}</Text>
+          <Text className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{style}</Text>
         </Flex>
       </Flex>
       
