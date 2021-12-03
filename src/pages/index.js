@@ -32,6 +32,13 @@ import {
 
 export const pageQuery = graphql`
   query MyQuery {
+    theWisdom: allGoogleSpreadsheetWisdom {
+      nodes {
+        type
+        kerning
+        id
+      }
+    }
     theBri: allGoogleSpreadsheetTheBri {
       nodes {
         type
@@ -39,7 +46,49 @@ export const pageQuery = graphql`
         id
       }
     }
-    theWisdom: allGoogleSpreadsheetWisdom {
+    theAudra: allGoogleSpreadsheetTheAudra{
+      nodes {
+        type
+        kerning
+        id
+      }
+    }
+    theHenry: allGoogleSpreadsheetTheHenry{
+      nodes {
+        type
+        kerning
+        id
+      }
+    }
+    theSofia: allGoogleSpreadsheetTheSofia{
+      nodes {
+        type
+        kerning
+        id
+      }
+    }
+    thePalermo: allGoogleSpreadsheetThePalermo{
+      nodes {
+        type
+        kerning
+        id
+      }
+    }
+    theDylan: allGoogleSpreadsheetTheDylan{
+      nodes {
+        type
+        kerning
+        id
+      }
+    }
+    theTalley: allGoogleSpreadsheetTheTalley{
+      nodes {
+        type
+        kerning
+        id
+      }
+    }
+    fromTheDeskOf: allGoogleSpreadsheetFromTheDesk{
       nodes {
         type
         kerning
@@ -75,9 +124,9 @@ const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
   const [colorIndex, setColorIndex] = useState(0);
   const color = colors[colorIndex];
-  const [fontId, setFontId]  = useState('9cf7bba6-2e61-59f5-81b1-7949339ebc45');
+  const [fontId, setFontId]  = useState('c30b0034-34db-56e7-8012-213832df2366');
   const font = data[style]?.nodes.find(node => node.id === fontId);
-  const [cardCopy, setCardCopy] = useState('Your Copy Here.');
+  const [cardCopy, setCardCopy] = useState('YOUR COPY HERE');
   
   console.log(font);
 
@@ -95,7 +144,10 @@ const IndexPage = ({data}) => {
           
         </Flex> */}
         <Flex className={`card `} w='583px' h='448px' bgImage={`url(${style}.jpg)`} p='16'>
-          <Text className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
+          { style === 'fromTheDeskOf' &&
+            <Text as='h2' fontFamily='Hoefler'>From the Desk Of</Text>
+          }
+          <Text as='h1' className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
         </Flex>
       </Flex>
       
@@ -116,6 +168,12 @@ const IndexPage = ({data}) => {
               <Select value={style} onChange={(event) => setStyle(event.target.value)} placeholder="Select Style">
                 <option value="theWisdom">The Wisdom</option>
                 <option value="theBri">The Bri</option>
+                <option value="theAudra">The Audra</option>
+                <option value="theHenry">The Henry</option>
+                <option value="theSofia">The Sofia</option>
+                <option value="thePalermo">The Palermo</option>
+                <option value="theDylan">The Dylan</option>
+                <option value="theTalley">The Talley</option>
               </Select>
               { style &&
                 <Select value={fontId} onChange={(event) => setFontId(event.target.value)} > 
