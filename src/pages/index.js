@@ -77,6 +77,7 @@ const IndexPage = ({data}) => {
   const color = colors[colorIndex];
   const [fontId, setFontId]  = useState('9cf7bba6-2e61-59f5-81b1-7949339ebc45');
   const font = data[style]?.nodes.find(node => node.id === fontId);
+  const [cardCopy, setCardCopy] = useState('Your Copy Here.');
   
   console.log(font);
 
@@ -90,11 +91,11 @@ const IndexPage = ({data}) => {
         Edit Card Settings
       </Button>
       <Flex className={`cardParent ${style}`} alignItems='center' justifyContent='center'>
-        <Flex className={`envelope`} >
+        {/* <Flex className={`envelope`} >
           
-        </Flex>
-        <Flex className={`card`} w='583px' h='448px' bgImage={`url(${style}.jpg)`} alignItems='flex-end' justifyContent='flex-end' p='16'>
-          <Text className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{style}</Text>
+        </Flex> */}
+        <Flex className={`card `} w='583px' h='448px' bgImage={`url(${style}.jpg)`} p='16'>
+          <Text className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
         </Flex>
       </Flex>
       
@@ -129,10 +130,8 @@ const IndexPage = ({data}) => {
                 </Select>
               }
             </Stack>
-            <Text>Top Text:</Text>
-            <Input placeholder="Top Text" size="lg" />
-            <Text>Bottom Text:</Text>
-            <Input placeholder="Bottom Text" size="lg" />
+            <Text>Card Text:</Text>
+            <Input value={cardCopy} placeholder="Card Text" size="lg" onChange={(event) => setCardCopy(event.target.value)} />
             <Text>Select Ink Color:</Text>
             <Popover
               isLazy
