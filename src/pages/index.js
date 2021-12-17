@@ -154,7 +154,7 @@ const IndexPage = ({data}) => {
     <Box bg='#e9e9e9' height='100vh'>
       <Container  paddingTop="50"  >
       <title>Alissa Bell</title>
-      <Button ref={btnRef} colorScheme="orange" onClick={onOpen}>
+      <Button marginBottom='16px' ref={btnRef} colorScheme="orange" onClick={onOpen}>
         Customize Your Card
       </Button>
       <Flex className={`cardParent ${style}`} flexWrap='wrap'>
