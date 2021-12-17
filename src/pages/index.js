@@ -119,35 +119,55 @@ const colors = [
   ['Silver', '#B3B6B8', '#FFF'],
   ['Black', '#000000', '#FFF'],
 ];
+const envelopeColors = [
+  ['Vinho Verde', '#9d8403', '#fff'],
+  ['Tumeric', '#da9b1a', '#fff'],
+  ['Sky', '#c9d5d5', '#fff'],
+  ['Saddle', '#413328', '#fff'],
+  ['Paprika', '#dc6f52', '#fff'],
+  ['Nude', '#f6e6d6', '#fffbd3'],
+  ['Lilac', '#cfbcd0', '#fff'],
+  ['Emerald','#37443d', '#fff'],
+  ['Disco', '#d3d7d8', '#fff'],
+  ['Charcoal', '#2d2b2e', '#fff'],
+  ['Calla Lily', '#e7e7e7', '#fff'],
+  ['California Poppy', '#d78023', '#fff'],
+  ['Barragan Pink', '#d53863', '#fff'],
+]
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
   const [colorIndex, setColorIndex] = useState(0);
   const color = colors[colorIndex];
+  const [envelopColorIndex, setEnvelopeColorIndex] = useState(0);
+  const envelopeColor = envelopeColors[envelopColorIndex];
   const [fontId, setFontId]  = useState('c30b0034-34db-56e7-8012-213832df2366');
   const font = data[style]?.nodes.find(node => node.id === fontId);
   const [cardCopy, setCardCopy] = useState('YOUR COPY HERE');
-  
-  console.log(font);
+  const [fontIdTwo, setFontIdTwo] = useState('c30b0034-34db-56e7-8012-213832df2366');
+  const fontTwo = data[style]?.nodes.find(node => node.id === fontId);
+  const [envCopy, setEnvCopy] = useState('ENVELOPE COPY HERE');
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   return (
     <Box bg='#e9e9e9' height='100vh'>
-      <Container maxW="container.xl" p="50" >
+      <Container  paddingTop="50"  >
       <title>Alissa Bell</title>
       <Button ref={btnRef} colorScheme="orange" onClick={onOpen}>
-        Edit Card Settings
+        Customize Your Card
       </Button>
-      <Flex className={`cardParent ${style}`} alignItems='center' justifyContent='center'>
-        {/* <Flex className={`envelope`} >
-          
-        </Flex> */}
-        <Flex className={`card `} w='583px' h='448px' bgImage={`url(${style}.jpg)`} p='16'>
+      <Flex className={`cardParent ${style}`} flexWrap='wrap'>
+        <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]} w="100%" maxWidth='583px' h='435px'>
+          <Flex className='envelopeMask'  color='#fff' bgImage='url(signature.png);' backgroundSize='100%' w='583px' position='relative' alignItems='flex-end' justifyContent='center' paddingBottom='25px'>
+            <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' fontSize='12' textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)' >{envCopy}</Text>
+          </Flex>
+        </Flex>
+        <Flex className={`card `} w='100%' maxWidth='583px' h='448px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p='16'>
           { style === 'fromTheDeskOf' &&
-            <Text as='h2' fontFamily='Hoefler'>From the Desk Of</Text>
+            <Text as='h2' fontFamily={fontTwo?.type}>From the Desk Of</Text>
           }
-          <Text as='h1' className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
+          <Text as='h1' fontSize='16' textShadow='0px 1px 1px rgb(255 255 255 / 94%), 0px -0.5px 0px rgb(0 0 0 / 38%)' className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
         </Flex>
       </Flex>
       
@@ -160,9 +180,71 @@ const IndexPage = ({data}) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Edit Card Settings</DrawerHeader>
+          <DrawerHeader>Envelope Settings</DrawerHeader>
           <Container>
-            <Text>Card Style:</Text>
+            <Text>Envelope Text:</Text>
+            <Input spacing='4' value={envCopy} placeholder="Card Text" size="lg" onChange={(event) => setEnvCopy(event.target.value)} />
+            
+            <Text marginTop='16px' spacing='4'>Select Envelope Color:</Text>
+            <Popover
+              isLazy
+              variant="picker"
+              placement="top-end"
+              spacing='4'
+            >
+              <PopoverTrigger>
+                <Button
+                  aria-label={envelopeColor}
+                  background={envelopeColor[1]}
+                  height="50px"
+                  width="50px"
+                  padding={0}
+                  minWidth="unset"
+                  borderRadius={50}
+                />
+              </PopoverTrigger>
+              <PopoverContent width="320px">
+                <PopoverArrow bg={envelopeColor[1]} />
+                <PopoverCloseButton color="white" />
+                <PopoverHeader
+                  height="100px"
+                  backgroundColor={envelopeColor[1]}
+                  borderTopLeftRadius={5}
+                  borderTopRightRadius={5}
+                  color="white"
+                >
+                  <Center height="100%">
+                    <Text color={envelopeColor[2]}>
+                      {envelopeColor[0]}
+                    </Text>
+                  </Center>
+                </PopoverHeader>
+                <PopoverBody>
+                  <SimpleGrid columns={5} spacing={2}>
+                    {envelopeColors.map((col, index) => (
+                      <Button
+                        key={col[1]}
+                        aria-label={col[1]}
+                        background={col[1]}
+                        height="50px"
+                        width="50px"
+                        padding={0}
+                        borderRadius={50}
+                        _hover={{ background: col[1] }}
+                        onClick={() => {
+                          setEnvelopeColorIndex(index);
+                        }}
+                      />
+                    ))}
+                  </SimpleGrid>
+
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </Container>
+          <DrawerHeader>Card Settings</DrawerHeader>
+          <Container>
+            <Text a>Card Style:</Text>
 
             <Stack spacing='4'>
               <Select value={style} onChange={(event) => setStyle(event.target.value)} placeholder="Select Style">
@@ -174,9 +256,10 @@ const IndexPage = ({data}) => {
                 <option value="thePalermo">The Palermo</option>
                 <option value="theDylan">The Dylan</option>
                 <option value="theTalley">The Talley</option>
+                <option value="fromTheDeskOf">From The Desk</option>
               </Select>
               { style &&
-                <Select value={fontId} onChange={(event) => setFontId(event.target.value)} > 
+                <Select spacing='4' value={fontId} onChange={(event) => setFontId(event.target.value)} > 
                   {data[style].nodes.map(node => {
                     return (
                       <option key={node.id} value={node.id}>
@@ -188,9 +271,21 @@ const IndexPage = ({data}) => {
                 </Select>
               }
             </Stack>
-            <Text>Card Text:</Text>
-            <Input value={cardCopy} placeholder="Card Text" size="lg" onChange={(event) => setCardCopy(event.target.value)} />
-            <Text>Select Ink Color:</Text>
+            <Text marginTop='16px'>Card Text:</Text>
+            <Input spacing='4' value={cardCopy} placeholder="Card Text" size="lg" onChange={(event) => setCardCopy(event.target.value)} />
+            {style ==='fromTheDeskOf' &&
+              <Select spacing='4'  value={fontIdTwo} onChange={(event) => setFontIdTwo(event.target.value)} placeholder='From the Desk Of Font'> 
+                {data[style].nodes.map(node => {
+                  return (
+                    <option key={node.id} value={node.id}>
+                      {node.type} 
+                      {node.kerning && ` - ${node.kerning}`}
+                    </option>
+                  )
+                })}
+              </Select>
+            }
+            <Text marginTop='16px'>Select Ink Color:</Text>
             <Popover
               isLazy
               variant="picker"
@@ -241,7 +336,6 @@ const IndexPage = ({data}) => {
                       />
                     ))}
                   </SimpleGrid>
-
                 </PopoverBody>
               </PopoverContent>
             </Popover>
