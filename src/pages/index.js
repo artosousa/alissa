@@ -173,7 +173,7 @@ const IndexPage = ({data}) => {
             <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' fontSize='12' textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)' >{envCopy}</Text>
           </Flex>
         </Flex>
-        <Flex className={`card `} flexWrap='wrap' w='100%' maxWidth='583px' h={['365px','365px','435px','435px']} bgImage={`url(${style}.jpg)`} backgroundSize='100%' p='16'>
+        <Flex className={`card `} flexWrap='wrap' w='100%' maxWidth='583px' h={['365px','365px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p='16'>
           { style === 'fromTheDeskOf' &&
             <Text as='h2' fontFamily={font?.topType}>From the Desk Of</Text>
           }
