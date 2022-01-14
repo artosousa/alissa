@@ -29,6 +29,7 @@ import {
   Text,
   useDisclosure,
   Textarea,
+  StylesProvider,
 } from '@chakra-ui/react';
 
 export const pageQuery = graphql`
@@ -39,6 +40,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     theWisdom: allGoogleSpreadsheetWisdom {
@@ -46,6 +48,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     theBri: allGoogleSpreadsheetTheBri {
@@ -53,6 +56,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     theAudra: allGoogleSpreadsheetTheAudra{
@@ -60,6 +64,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     theHenry: allGoogleSpreadsheetTheHenry{
@@ -67,6 +72,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     theSofia: allGoogleSpreadsheetTheSofia{
@@ -74,6 +80,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     thePalermo: allGoogleSpreadsheetThePalermo{
@@ -81,6 +88,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     theDylan: allGoogleSpreadsheetTheDylan{
@@ -88,6 +96,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     theTalley: allGoogleSpreadsheetTheTalley{
@@ -95,6 +104,7 @@ export const pageQuery = graphql`
         type
         kerning
         id
+        topLabel
       }
     }
     fromTheDeskOf: allGoogleSpreadsheetFromTheDesk{
@@ -104,6 +114,7 @@ export const pageQuery = graphql`
         kerning
         kerningTwo
         id
+        topLabel
       }
     }
   }
@@ -145,6 +156,15 @@ const envelopeColors = [
   ['California Poppy', '#d78023', '#fff'],
   ['Barragan Pink', '#d53863', '#fff'],
 ]
+
+const styles = [
+  'theHenry',
+  'theSofia',
+  'thePalermo',
+  'theDylan',
+  'theTalley',
+  'fromTheDeskOf'
+]
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
@@ -170,16 +190,18 @@ const IndexPage = ({data}) => {
       <Flex className={`cardParent ${style}`} flexWrap='wrap'>
         <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]} w="100%" maxWidth='583px' h={['267px','365px','435px','435px']}>
           <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w='583px' position='relative'  justifyContent='center' >
-            <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' fontSize='12' textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)' >{envCopy}</Text>
+            <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' whiteSpace='pre-wrap' textAlign='center' fontSize='12' fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]} textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)'  >{envCopy}</Text>
           </Flex>
         </Flex>
         <Flex className={`card `} flexWrap='wrap' w='100%' maxWidth='583px' h={['267px','365px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
           { style === 'fromTheDeskOf' &&
-            <Text as='h2' fontFamily={font?.topType}>From the Desk Of</Text>
+            <>
+              <Text as='h2' fontFamily={font?.topType} fontSize='14px'>From the Desk Of</Text>
+            </>
           }
           <Text as={style === 'theJordan' ? 'h2' : 'h1'} fontSize='16' textShadow='0px 1px 1px rgb(255 255 255 / 94%), 0px -0.5px 0px rgb(0 0 0 / 38%)' className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
           { style === 'theJordan' &&
-            <Text as='h1' textDecoration='underline' color={color[1]} fontFamily={font?.topType}>{jordanCopy}</Text>
+            <Text as='h1' borderBottom='1px solid' color={color[1]} fontFamily={font?.topType}>{jordanCopy}</Text>
           }
           
         </Flex>
@@ -192,69 +214,73 @@ const IndexPage = ({data}) => {
         size="lg"
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent overflow='auto'>
           <DrawerCloseButton />
           <DrawerHeader>Envelope Settings</DrawerHeader>
           <Container>
             <Text>Envelope Text:</Text>
             <Textarea spacing='4' whiteSpace='pre-wrap' value={envCopy} placeholder="Envelope Text" size="lg" onChange={(event) => setEnvCopy(event.target.value)} />
-            
-            <Text marginTop='16px' spacing='4'>Select Envelope Color:</Text>
-            <Popover
-              isLazy
-              variant="picker"
-              placement="top-end"
-              spacing='4'
-            >
-              <PopoverTrigger>
-                <Button
-                  aria-label={envelopeColor}
-                  background={envelopeColor[1]}
-                  height="50px"
-                  width="50px"
-                  padding={0}
-                  minWidth="unset"
-                  borderRadius={50}
-                />
-              </PopoverTrigger>
-              <PopoverContent width="320px">
-                <PopoverArrow bg={envelopeColor[1]} />
-                <PopoverCloseButton color="white" />
-                <PopoverHeader
-                  height="100px"
-                  backgroundColor={envelopeColor[1]}
-                  borderTopLeftRadius={5}
-                  borderTopRightRadius={5}
-                  color="white"
+            disableEnvCol
+            { !styles.includes(style) && 
+              <>
+                <Text marginTop='16px' spacing='4'>Select Envelope Color:</Text>
+                <Popover
+                  isLazy
+                  variant="picker"
+                  placement="top-end"
+                  spacing='4'
                 >
-                  <Center height="100%">
-                    <Text color={envelopeColor[2]}>
-                      {envelopeColor[0]}
-                    </Text>
-                  </Center>
-                </PopoverHeader>
-                <PopoverBody>
-                  <SimpleGrid columns={5} spacing={2}>
-                    {envelopeColors.map((col, index) => (
-                      <Button
-                        key={col[1]}
-                        aria-label={col[1]}
-                        background={col[1]}
-                        height="50px"
-                        width="50px"
-                        padding={0}
-                        borderRadius={50}
-                        _hover={{ background: col[1] }}
-                        onClick={() => {
-                          setEnvelopeColorIndex(index);
-                        }}
-                      />
-                    ))}
-                  </SimpleGrid>
+                  <PopoverTrigger>
+                    <Button
+                      aria-label={envelopeColor}
+                      background={envelopeColor[1]}
+                      height="50px"
+                      width="50px"
+                      padding={0}
+                      minWidth="unset"
+                      borderRadius={50}
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent width="320px">
+                    <PopoverArrow bg={envelopeColor[1]} />
+                    <PopoverCloseButton color="white" />
+                    <PopoverHeader
+                      height="100px"
+                      backgroundColor={envelopeColor[1]}
+                      borderTopLeftRadius={5}
+                      borderTopRightRadius={5}
+                      color="white"
+                    >
+                      <Center height="100%">
+                        <Text color={envelopeColor[2]}>
+                          {envelopeColor[0]}
+                        </Text>
+                      </Center>
+                    </PopoverHeader>
+                    <PopoverBody>
+                      <SimpleGrid columns={5} spacing={2}>
+                        {envelopeColors.map((col, index) => (
+                          <Button
+                            key={col[1]}
+                            aria-label={col[1]}
+                            background={col[1]}
+                            height="50px"
+                            width="50px"
+                            padding={0}
+                            borderRadius={50}
+                            _hover={{ background: col[1] }}
+                            onClick={() => {
+                              setEnvelopeColorIndex(index);
+                            }}
+                          />
+                        ))}
+                      </SimpleGrid>
 
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
+                    </PopoverBody>
+                  </PopoverContent>
+                </Popover>
+              </>
+            }
           </Container>
           <DrawerHeader>Card Settings</DrawerHeader>
           <Container>
@@ -262,7 +288,7 @@ const IndexPage = ({data}) => {
 
             <Stack spacing='4'>
               <Text a>Card Style:</Text>
-              <Select value={style} onChange={(event) => setStyle(event.target.value)} placeholder="Select Style">
+              <Select value={style} onChange={(event) => setStyle(event.target.value)} >
               <option value="theJordan">The Jordan</option>
                 <option value="theWisdom">The Wisdom</option>
                 <option value="theBri">The Bri</option>
@@ -281,7 +307,8 @@ const IndexPage = ({data}) => {
                   {data[style].nodes.map(node => {
                     return (
                       <option key={node.id} value={node.id}>
-                        {node.topType ? `${node.topType} & ${node.type} ` : node.type}
+                        {/* {node.topType ? `${node.topType} & ${node.type} ` : node.type} */}
+                        {node.topLabel && `${node.topLabel}` }
                         {node.kerning && ` - ${node.kerning}`}
                       </option>
                     )
