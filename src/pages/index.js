@@ -183,7 +183,7 @@ const IndexPage = ({data}) => {
   return (
     
     <Box bg='#e9e9e9' height='100vh' display='inline-flex' w='100%' alignItems='center' justifyContent='center'>
-      <Flex  paddingTop="50"  flexWrap='wrap' flexDirection='column' w="100%" maxWidth='583px'>
+      <Flex  paddingTop="50"  flexWrap='wrap' overflowX='hidden' flexDirection='column' w="100%" maxWidth='583px'>
         <title>Alissa Bell</title>
         <Button marginBottom='16px' ref={btnRef} colorScheme="orange" onClick={onOpen}>
           Customize Your Card
