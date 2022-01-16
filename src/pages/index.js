@@ -165,7 +165,8 @@ const styles = [
   'theTalley',
   'fromTheDeskOf'
 ]
-
+const platform = window.navigator.platform;
+alert(platform)
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
@@ -189,7 +190,7 @@ const IndexPage = ({data}) => {
         Customize Your Card
       </Button>
       <Flex className={`cardParent ${style}`} flexWrap='wrap'>
-        <Flex className={`envelopeBG`}   bgColor={envelopeColor[11]} w="100%" maxWidth='583px' h={['267px','365px','435px','435px']}>
+        <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]} w="100%" maxWidth='583px' h={['267px','365px','435px','435px']}>
           <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w='583px' position='relative'  justifyContent='center' >
             <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' whiteSpace='pre-wrap' textAlign='center' fontSize='12' fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]} textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)'  >{envCopy}</Text>
           </Flex>
@@ -221,7 +222,7 @@ const IndexPage = ({data}) => {
           <Container>
             <Text>Envelope Text:</Text>
             <Textarea spacing='4' whiteSpace='pre-wrap' value={envCopy} placeholder="Envelope Text" size="lg" onChange={(event) => setEnvCopy(event.target.value)} />
-            disableEnvCol
+            
             { !styles.includes(style) && 
               <>
                 <Text marginTop='16px' spacing='4'>Select Envelope Color:</Text>
