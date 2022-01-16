@@ -191,12 +191,12 @@ const IndexPage = ({data}) => {
         
         
         <Flex className={`cardParent ${style}`} flexWrap='wrap'>
-          <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]}  h={['267px','365px','435px','435px']}>
-            <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w='583px' position='relative'  justifyContent='center' >
+          <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]}  h=''>
+            <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w={['500px','500px','583px','583px']} h={['267px','365px','435px','435px']} position='relative'  justifyContent='center' >
               <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' whiteSpace='pre-wrap' textAlign='center' fontSize='12' fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]} textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)'  >{envCopy}</Text>
             </Flex>
           </Flex>
-          <Flex className={`card `} flexWrap='wrap' w='100%' maxWidth='583px' h={['267px','365px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
+          <Flex className={`card `} flexWrap='wrap'  w={['500px','500px','583px','583px']} h={['267px','365px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
             { style === 'fromTheDeskOf' &&
               <>
                 <Text as='h2' fontFamily={font?.topType} fontSize='14px'>From the Desk Of</Text>
