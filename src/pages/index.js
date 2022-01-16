@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
+import window from 'global';
 
 import "../css/type.css";
 
@@ -165,8 +166,7 @@ const styles = [
   'theTalley',
   'fromTheDeskOf'
 ]
-const platform = window.navigator.platform;
-alert(platform)
+console.log(window.navigator.platform)
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
@@ -183,12 +183,14 @@ const IndexPage = ({data}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   return (
+    
     <Box bg='#e9e9e9' height='100vh'>
       <Container  paddingTop="50"  >
       <title>Alissa Bell</title>
       <Button marginBottom='16px' ref={btnRef} colorScheme="orange" onClick={onOpen}>
         Customize Your Card
       </Button>
+      
       <Flex className={`cardParent ${style}`} flexWrap='wrap'>
         <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]} w="100%" maxWidth='583px' h={['267px','365px','435px','435px']}>
           <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w='583px' position='relative'  justifyContent='center' >
@@ -222,7 +224,7 @@ const IndexPage = ({data}) => {
           <Container>
             <Text>Envelope Text:</Text>
             <Textarea spacing='4' whiteSpace='pre-wrap' value={envCopy} placeholder="Envelope Text" size="lg" onChange={(event) => setEnvCopy(event.target.value)} />
-            
+
             { !styles.includes(style) && 
               <>
                 <Text marginTop='16px' spacing='4'>Select Envelope Color:</Text>
