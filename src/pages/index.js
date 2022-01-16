@@ -165,12 +165,7 @@ const styles = [
   'theTalley',
   'fromTheDeskOf'
 ]
-let OSName="Unknown OS";
-if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
 
-if(OSName === 'Windows'){
-  document.body.classList.add("Windows");
-}
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
