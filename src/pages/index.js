@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
-import window from 'global';
 
-import "../css/reset.css";
 import "../css/type.css";
 
 import {
