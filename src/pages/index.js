@@ -166,7 +166,10 @@ const styles = [
   'theTalley',
   'fromTheDeskOf'
 ]
-console.log(window.navigator.platform)
+let myOs = window.navigator.userAgent;
+if( myOs.includes('Windows')){
+  document.body.classList.add('Windows');
+}
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
