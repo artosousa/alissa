@@ -109,3 +109,8 @@ body{
 .theJordan .card h1{
     align-items: flex-end;
 }
+
+.Windows .envelopeBG,
+.Windows .card{
+    height: 335px !important;
+}
