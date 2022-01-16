@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import window from 'global';
 
+import "../css/reset.css";
 import "../css/type.css";
-
 import {
   Box,
   Button,
@@ -166,10 +166,7 @@ const styles = [
   'theTalley',
   'fromTheDeskOf'
 ]
-let myOs = window.navigator.userAgent;
-if( myOs.includes('Windows')){
-  document.body.classList.add('Windows');
-}
+
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
