@@ -4,6 +4,7 @@ import window from 'global';
 
 import "../css/reset.css";
 import "../css/type.css";
+
 import {
   Box,
   Button,
@@ -166,7 +167,9 @@ const styles = [
   'theTalley',
   'fromTheDeskOf'
 ]
-
+const mySpecialWindowFunction = () => {
+    return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+};
 // markup
 const IndexPage = ({data}) => {
   const [style, setStyle] = useState('theWisdom');
@@ -182,7 +185,7 @@ const IndexPage = ({data}) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  return (
+  return ( 
     
     <Box bg='#e9e9e9' height='100vh'>
       <Container  paddingTop="50"  >
@@ -192,12 +195,12 @@ const IndexPage = ({data}) => {
       </Button>
       
       <Flex className={`cardParent ${style}`} flexWrap='wrap'>
-        <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]} w="100%" maxWidth='583px' h={['267px','365px','435px','435px']}>
+        <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]} w="100%" maxWidth='583px' h={['267px','335px','335px','335px']}>
           <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w='583px' position='relative'  justifyContent='center' >
             <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' whiteSpace='pre-wrap' textAlign='center' fontSize='12' fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]} textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)'  >{envCopy}</Text>
           </Flex>
         </Flex>
-        <Flex className={`card `} flexWrap='wrap' w='100%' maxWidth='583px' h={['267px','365px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
+        <Flex className={`card `} flexWrap='wrap' w='100%' maxWidth='583px' h={['267px','335px','335px','335px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
           { style === 'fromTheDeskOf' &&
             <>
               <Text as='h2' fontFamily={font?.topType} fontSize='14px'>From the Desk Of</Text>
