@@ -167,7 +167,7 @@ const styles = [
 
 // markup
 const IndexPage = ({data}) => {
-  const [style, setStyle] = useState('theWisdom');
+  const [style, setStyle] = useState('theJordan');
   const [colorIndex, setColorIndex] = useState(0);
   const color = colors[colorIndex];
   const [envelopColorIndex, setEnvelopeColorIndex] = useState(0);
@@ -190,21 +190,22 @@ const IndexPage = ({data}) => {
         </Button>
         
         
-        <Flex className={`cardParent ${style}`} flexWrap='wrap'>
+        <Flex className={`cardParent ${style} `} flexWrap='wrap'>
           <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]}  >
             <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w={['500px','500px','583px','583px']} h={['377px','377px','435px','435px']} position='relative'  justifyContent='center' >
               <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' whiteSpace='pre-wrap' textAlign='center' fontSize='12' fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]} textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)'  >{envCopy}</Text>
             </Flex>
           </Flex>
+          { console.log(font)}
           <Flex className={`card `} flexWrap='wrap'  w={['500px','500px','583px','583px']} h={['377px','377px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
             { style === 'fromTheDeskOf' &&
               <>
-                <Text as='h2' fontFamily={font?.topType} fontSize='14px'>From the Desk Of</Text>
+                <Text as='h2' fontFamily={font?.topType} className={font?.topType} fontSize='14px'>From the Desk Of</Text>
               </>
             }
-            <Text as={style === 'theJordan' ? 'h2' : 'h1'} fontSize='16' textShadow='0px 1px 1px rgb(255 255 255 / 94%), 0px -0.5px 0px rgb(0 0 0 / 38%)' className={style} fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
+            <Text as={style === 'theJordan' ? 'h2' : 'h1'} fontSize='16' textShadow='0px 1px 1px rgb(255 255 255 / 94%), 0px -0.5px 0px rgb(0 0 0 / 38%)' className={style}  fontFamily={style === 'theJordan' ? font?.topType : font?.type}  letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
             { style === 'theJordan' &&
-              <Text as='h1' borderBottom='1px solid' color={color[1]} fontFamily={font?.topType}>{jordanCopy}</Text>
+              <Text as='h1' borderBottom='1px solid' color={color[1]} fontFamily={font?.type}>{jordanCopy}</Text>
             }
             
           </Flex>
@@ -290,7 +291,7 @@ const IndexPage = ({data}) => {
 
               <Stack spacing='4'>
                 <Text a>Card Style:</Text>
-                <Select value={style} onChange={(event) => setStyle(event.target.value)} >
+                <Select value={style} onChange={(event) => setStyle(event.target.value)} placeholder="Select Style" >
                 <option value="theJordan">The Jordan</option>
                   <option value="theWisdom">The Wisdom</option>
                   <option value="theBri">The Bri</option>
@@ -305,7 +306,7 @@ const IndexPage = ({data}) => {
                 <Text>Font Family:</Text>
                 { style &&
                 
-                  <Select spacing='4' value={fontId} onChange={(event) => setFontId(event.target.value)} > 
+                  <Select spacing='4' value={fontId} placeholder="Select Font Family" onChange={(event) => setFontId(event.target.value)} > 
                     {data[style].nodes.map(node => {
                       return (
                         <option key={node.id} value={node.id}>
