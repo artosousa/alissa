@@ -40,8 +40,8 @@
 }
 @font-face {
     font-family: 'Hoefler';
-    src: url('../fonts/HoeflerText-Italic.woff2') format('woff2'),
-        url('../fonts/HoeflerText-Italic.woff') format('woff');
+    src: url('../fonts/HoeflerText.woff2') format('woff2'),
+        url('../fonts/HoeflerText.woff') format('woff');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -113,9 +113,11 @@ body{
 }
 .theJordan .card h2{
     align-items: flex-start;
+    letter-spacing: -0.04rem;
 }
 .theJordan .card h1{
     align-items: flex-end;
+    letter-spacing: 0.3rem;
 }
 
 .Windows .envelopeBG,

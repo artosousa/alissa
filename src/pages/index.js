@@ -200,7 +200,7 @@ const IndexPage = ({data}) => {
           <Flex className={`card `} flexWrap='wrap'  w={['500px','500px','583px','583px']} h={['377px','377px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
             { style === 'fromTheDeskOf' &&
               <>
-                <Text as='h2' fontFamily={font?.topType} className={font?.topType} fontSize='14px'>From the Desk Of</Text>
+                <Text as='h2' color={color[1]} fontFamily={font?.topType} className={font?.topType} fontSize='14px'>From the Desk Of</Text>
               </>
             }
             <Text as={style === 'theJordan' ? 'h2' : 'h1'} fontSize='16' textShadow='0px 1px 1px rgb(255 255 255 / 94%), 0px -0.5px 0px rgb(0 0 0 / 38%)' className={style}  fontFamily={style === 'theJordan' ? font?.topType : font?.type}  letterSpacing={`${font?.kerning/16}px`} color={color[1]}>{cardCopy}</Text>
