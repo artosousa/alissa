@@ -197,7 +197,7 @@ const IndexPage = ({data}) => {
             </Flex>
           </Flex>
           { console.log(font)}
-          <Flex className={`card `} flexWrap='wrap'  w={['500px','500px','583px','583px']} h={['377px','377px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
+          <Flex className={`card `} flexWrap='wrap'  w={['500px','500px','583px','583px']} h={['327px','377px','435px','435px']} position='relative' left='5px' bgImage={`url(${style}.jpg)`} backgroundSize='100%' p={['10','10','16','16']}>
             { style === 'fromTheDeskOf' &&
               <>
                 <Text as='h2' color={color[1]} fontFamily={font?.topType} className={font?.topType} fontSize='14px'>From the Desk Of</Text>
