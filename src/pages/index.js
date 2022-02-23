@@ -183,16 +183,16 @@ const IndexPage = ({data}) => {
   return (
     
     <Box bg='#e9e9e9' height='100vh' display='inline-flex' w='100%' alignItems='center' justifyContent='center'>
-      <Flex  paddingTop="50"  flexWrap='wrap' overflowX='hidden' flexDirection='column' w="100%" maxWidth='583px'>
+      <Flex  paddingTop="50"  alignItems='center' justifyContent='center' flexWrap='wrap' overflowX='hidden' flexDirection='column' w="100%" maxWidth='583px'>
         <title>Alissa Bell</title>
-        <Button marginBottom='16px' ref={btnRef} colorScheme="orange" onClick={onOpen}>
+        <Button marginBottom='16px' w={['80%', '100%', '100%', '100%']} ref={btnRef} colorScheme="orange" onClick={onOpen}>
           Customize Your Card
         </Button>
         
         
-        <Flex className={`cardParent ${style} `} flexWrap='wrap'>
+        <Flex className={`cardParent ${style} `} w={['100%','auto', 'auto', 'auto']} alignItems='center' justifyContent='center' flexWrap='wrap'>
           <Flex className={`envelopeBG`}   bgColor={envelopeColor[1]}  >
-            <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w={['500px','500px','583px','583px']} h={['377px','377px','435px','435px']} position='relative'  justifyContent='center' >
+            <Flex className={`envelopeMask`}    color='#fff'  backgroundSize='100%' w={['410px','500px','583px','583px']} h={['310px','377px','435px','435px']} position='relative'  justifyContent='center' >
               <Text as='h1' fontFamily='Proxima' letterSpacing='3.125px' whiteSpace='pre-wrap' textAlign='center' fontSize='12' fontFamily={font?.type} letterSpacing={`${font?.kerning/16}px`} color={color[1]} textShadow='0px 1px 1px rgb(255 255 255 / 54%), 0px -0.5px 0px rgb(0 0 0 / 38%)'  >{envCopy}</Text>
             </Flex>
           </Flex>
