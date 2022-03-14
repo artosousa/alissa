@@ -11,7 +11,6 @@ import {
   Drawer,
   DrawerBody,
   DrawerHeader,
-  DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Flex,
@@ -174,19 +173,19 @@ const IndexPage = ({data}) => {
   const envelopeColor = envelopeColors[envelopColorIndex];
   const [fontId, setFontId]  = useState('c30b0034-34db-56e7-8012-213832df2366');
   const font = data[style]?.nodes.find(node => node.id === fontId);
-  const [cardCopy, setCardCopy] = useState('YOUR COPY HERE');
-  const [jordanCopy, setJordanCopy] = useState('BOTTOM COPY HERE');
-  const [envCopy, setEnvCopy] = useState('ENVELOPE COPY HERE');
+  const [cardCopy, setCardCopy] = useState('Jordan');
+  const [jordanCopy, setJordanCopy] = useState('AUBREE');
+  const [envCopy, setEnvCopy] = useState('616 YESTERDAY AVENUE | BEACON, NY 12508');
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   return (
     
-    <Box bg='#e9e9e9' height='100vh' display='inline-flex' w='100%' alignItems='center' justifyContent='center'>
+    <Box  bg='#e9e9e9' height='100vh' display='inline-flex' w='100%' alignItems='center' justifyContent='center'>
       <Flex  paddingTop="50"  alignItems='center' justifyContent='center' flexWrap='wrap' overflowX='hidden' flexDirection='column' w="100%" maxWidth='583px'>
         <title>Alissa Bell</title>
-        <Button marginBottom='16px' w={['80%', '100%', '100%', '100%']} ref={btnRef} colorScheme="orange" onClick={onOpen}>
-          Customize Your Card
+        <Button fontFamily='Montserrat' marginBottom='16px' w={['80%', '100%', '100%', '100%']} borderRadius='0' ref={btnRef} backgroundColor='#C67527' color='#ffffff' _hover={{background:'#a8561c'}} onClick={onOpen}>
+          Customize Your Stationery
         </Button>
         
         
@@ -214,14 +213,14 @@ const IndexPage = ({data}) => {
           isOpen={isOpen}
           placement="left"
           onClose={onClose}
-          size="lg"
+          size="sm"
         >
-          <DrawerOverlay />
-          <DrawerContent overflow='auto'>
+          
+          <DrawerContent fontFamily='Montserrat' overflow='auto'>
             <DrawerCloseButton />
-            <DrawerHeader>Envelope Settings</DrawerHeader>
-            <Container>
-              <Text>Envelope Text:</Text>
+            <DrawerHeader fontFamily='Cormorant Garamond'  fontSize='1.6rem'>Envelope Settings</DrawerHeader>
+            <Container >
+              <Text  >Envelope Text:</Text>
               <Textarea spacing='4' whiteSpace='pre-wrap' value={envCopy} placeholder="Envelope Text" size="lg" onChange={(event) => setEnvCopy(event.target.value)} />
 
               { !styles.includes(style) && 
@@ -285,7 +284,7 @@ const IndexPage = ({data}) => {
                 </>
               }
             </Container>
-            <DrawerHeader>Card Settings</DrawerHeader>
+            <DrawerHeader fontFamily='Cormorant Garamond' fontSize='1.6rem'>Card Settings</DrawerHeader>
             <Container>
               
 

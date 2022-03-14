@@ -14,6 +14,16 @@ module.exports = {
           client_email: "card-editor@alissa-bell.iam.gserviceaccount.com"
         }
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Montserrat`,
+          `Cormorant Garamond`
+        ],
+        display: 'swap'
+      }
     }
   ],
 };
