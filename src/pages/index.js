@@ -214,6 +214,7 @@ const IndexPage = ({data}) => {
           placement="left"
           onClose={onClose}
           size="sm"
+          scrollBehavior={'inside'} blockScrollOnMount={false}
         >
           
           <DrawerContent fontFamily='Montserrat' overflow='auto'>
