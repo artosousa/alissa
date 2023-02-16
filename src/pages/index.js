@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 
@@ -115,45 +116,24 @@ export const pageQuery = graphql`
         topLabel
       }
     }
+    envelopeColors: allGoogleSpreadsheetEnvelopeColors {
+      nodes {
+        accent
+        hex
+        id
+        name
+      }
+    }
+    textColors: allGoogleSpreadsheetTextColors {
+      nodes {
+        accent
+        hex
+        id
+        name
+      }
+    }
   }
 `;
-const colors = [
-  ['Powder', '#ADC1DC', '#FFF'],
-  ['Denim', '#2C5B8E', '#FFF'],
-  ['Navy', '#4A4B62', '#FFF'],
-  ['Grey', '#B8BBB3', '#FFF'],
-  ['Mint', '#E0EEDC', '#000'],
-  ['Clover', '#286B3F', '#FFF'],
-  ['Lupin', '#E6D4E7', '#000'],
-  ['Plum', '#332140', '#FFF'],
-  ['Eucalyptus', '#545F5E', '#FFF'],
-  ['Taupe', '#EAE3D0', '#000'],
-  ['Rosie', '#EEC8CB', '#000'],
-  ['Blush', '#FEF0EA', '#000'],
-  ['Papaya', '#E68972', '#FFF'],
-  ['Red', '#C32033', '#FFF'],
-  ['Tangerine', '#E78824', '#FFF'],
-  ['Rain Jacket', '#F0E232', '#b15b12'],
-  ['Gold', '#AF986E', '#FFF'],
-  ['Leather', '#694422', '#FFF'],
-  ['Silver', '#B3B6B8', '#FFF'],
-  ['Black', '#000000', '#FFF'],
-];
-const envelopeColors = [
-  ['Vinho Verde', '#9d8403', '#fff'],
-  ['Tumeric', '#da9b1a', '#fff'],
-  ['Sky', '#c9d5d5', '#fff'],
-  ['Saddle', '#413328', '#fff'],
-  ['Paprika', '#dc6f52', '#fff'],
-  ['Nude', '#f6e6d6', '#fffbd3'],
-  ['Lilac', '#cfbcd0', '#fff'],
-  ['Emerald', '#37443d', '#fff'],
-  ['Disco', '#d3d7d8', '#fff'],
-  ['Charcoal', '#2d2b2e', '#fff'],
-  ['Calla Lily', '#e7e7e7', '#fff'],
-  ['California Poppy', '#d78023', '#fff'],
-  ['Barragan Pink', '#d53863', '#fff'],
-];
 
 const styles = [
   'theHenry',
@@ -167,6 +147,9 @@ const styles = [
 // markup
 const IndexPage = ({ data }) => {
   const [style, setStyle] = useState('theJordan');
+  const colors = data.textColors.nodes.map((node) => [node.name, node.hex, node.accent]);
+  // eslint-disable-next-line max-len
+  const envelopeColors = data.envelopeColors.nodes.map((node) => [node.name, node.hex, node.accent]);
   const [colorIndex, setColorIndex] = useState(0);
   const color = colors[colorIndex];
   const [envelopColorIndex, setEnvelopeColorIndex] = useState(0);
