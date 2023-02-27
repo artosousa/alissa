@@ -19,6 +19,7 @@
     "@chakra-ui/react": "^1.6.12",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.3.0",
+    "@netlify/plugin-gatsby": "^3.5.2",
     "framer-motion": "^5.2.1",
     "gatsby": "^4.1.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
